@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02dad1d2-3905-43bf-9316-082c65a075d7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/injecto/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/injecto/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/injecto/core/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/injecto/core/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/injecto/core/Accountant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/injecto/core/Accountant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/injecto/core/TransactionHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/injecto/core/TransactionHandle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/injecto/core/WithdrawalAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/injecto/core/WithdrawalAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/injecto/core/WithdrawalServiceCaller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/injecto/core/WithdrawalServiceCaller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -4,6 +4,7 @@ import org.injecto.external.WithdrawalService;
 
 import java.math.BigDecimal;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class WithdrawalAddress implements Account {
     private final WithdrawalServiceCaller service;
@@ -30,20 +31,29 @@ public class WithdrawalAddress implements Account {
             @Override
             public void onSuccess(String comment) {
                 handle.onEvent(comment);
-                handle.onEvent("[%s] %s trying withdraw %g".formatted(address, donator, amount));
-                service.withdraw(address, amount).thenAccept(success -> {
-                    if (success) {
-                        handle.onSuccess("withdrew %g from %s to %s".formatted(amount, donator, address));
-                    } else {
-                        donator.unhold(amount);
-                        handle.onFailure("withdrawal of %g from %s to %s failed".formatted(amount, donator, address));
-                    }
-                });
+                withdraw_with_retry(new AtomicInteger(3), donator, amount, handle);
             }
 
             @Override
             public void onFailure(String error) {
                 handle.onFailure(error);
+            }
+        });
+    }
+
+    private void withdraw_with_retry(AtomicInteger attemptsLeft, Account donator, BigDecimal amount, TransactionHandle handle) {
+        if (attemptsLeft.decrementAndGet() < 0) {
+            donator.unhold(amount);
+            handle.onFailure("operation failed");
+            return;
+        }
+        handle.onEvent("[%s] %s trying withdraw %g".formatted(address, donator, amount));
+        service.withdraw(address, amount).thenAccept(success -> {
+            if (success) {
+                handle.onSuccess("withdrew %g from %s to %s".formatted(amount, donator, address));
+            } else {
+                handle.onEvent("withdrawal of %g from %s to %s failed".formatted(amount, donator, address));
+                withdraw_with_retry(attemptsLeft, donator, amount, handle);
             }
         });
     }
