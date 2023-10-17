@@ -6,6 +6,9 @@ import java.math.BigDecimal;
 import java.util.UUID;
 import java.util.concurrent.*;
 
+/**
+ * Provides asynchronous API atop WithdrawalService.
+ */
 public class WithdrawalServiceCaller {
     private final WithdrawalService service;
     private final ScheduledExecutorService executor;
@@ -49,6 +52,7 @@ public class WithdrawalServiceCaller {
 
     static class ThreadFactory implements java.util.concurrent.ThreadFactory {
         private int counter;
+
         @Override
         public Thread newThread(Runnable r) {
             var t = new Thread(r);

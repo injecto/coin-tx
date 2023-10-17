@@ -17,6 +17,11 @@ public class Accountant {
     }
 
     public void transfer(UserAccount.User donator, UserAccount.User recipient, BigDecimal amount, TransactionHandle handle) {
+        if (donator.equals(recipient)) {
+            handle.onFailure("transfer between the same account");
+            return;
+        }
+
         var donatorAcc = Objects.requireNonNull(accounts.get(donator), () -> "%s not registered".formatted(donator));
         var recipientAcc = Objects.requireNonNull(accounts.get(recipient), () -> "%s not registered".formatted(recipient));
         recipientAcc.deposit(donatorAcc, amount, handle);

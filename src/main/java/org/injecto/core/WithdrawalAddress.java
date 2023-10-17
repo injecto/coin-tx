@@ -50,6 +50,7 @@ public class WithdrawalAddress implements Account {
 
     @Override
     public void hold(BigDecimal amount, TransactionHandle handle) {
+        // oops, leaked abstraction
         throw new IllegalArgumentException("[%s] Cannot hold external address".formatted(address));
     }
 
